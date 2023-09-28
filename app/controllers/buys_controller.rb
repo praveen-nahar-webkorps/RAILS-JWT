@@ -2,7 +2,7 @@ class BuysController < ApplicationController
     before_action :find_buy, only: [:update,:show,:destroy]
   
     def index
-        @buys = User.find_by!(params[:username]).buys.all
+        @buys = User.find_by!(username: params[:user__username]).buys.all
         render json:@buys, status: :ok
     end
 
@@ -15,7 +15,6 @@ class BuysController < ApplicationController
             render json: { errors: @buy.errors.full_messages },
                    status: :unprocessable_entity
         end
-        debugger
     end
 
     def update
@@ -26,8 +25,7 @@ class BuysController < ApplicationController
     end
 
     def show
-   
-        render json:@buy, status: :ok
+         render json:@buy, status: :ok
     end
 
     def destroy
@@ -49,7 +47,7 @@ class BuysController < ApplicationController
 
     #callbacks
     def find_buy  
-        @buy = User.find_by(params[:username]).buys.find(params[:id])
+        @buy = User.find_by!(username: params[:user__username]).buys.find(params[:id])
     end
 
     #params
