@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
     def not_found
+      debugger
       render json: { error: 'not_found' }
     end
   
