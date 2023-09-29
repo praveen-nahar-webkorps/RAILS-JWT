@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_28_055954) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_28_123231) do
   create_table "buys", force: :cascade do |t|
     t.string "about"
     t.integer "price"
@@ -22,6 +22,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_28_055954) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_buys_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.string "commentable_type", null: false
+    t.integer "commentable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
   end
 
   create_table "rents", force: :cascade do |t|

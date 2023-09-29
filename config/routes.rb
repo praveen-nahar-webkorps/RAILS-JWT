@@ -5,10 +5,19 @@ Rails.application.routes.draw do
 
   resources :users, param: :_username do
     resources :buys 
-  end
-
-  resources :users, param: :_username do
     resources :rents 
   end
+
+  # resources :users, param: :_username do
+  #   resources :buys do
+  #     resources :comments, only: [:create]
+  #   end
+
+  #   resources :rents do
+  #     resources :comments, only: [:create]
+  #   end
+  # end
+
+  post '/comments', to: 'comments#create'
 
 end

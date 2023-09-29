@@ -52,6 +52,6 @@ class BuysController < ApplicationController
 
     #params
     def buy_params
-        params.permit(:about,:address,:price,:phone_no,:property_type,:landmark)
+        params.permit(:about,:address,:price,:phone_no,:property_type,:landmark,:buy_img)
     end
 end

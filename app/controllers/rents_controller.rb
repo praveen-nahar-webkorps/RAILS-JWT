@@ -25,7 +25,6 @@ class RentsController < ApplicationController
     end
 
     def show
-        debugger
         render json:@rent, status: :ok
     end
 
