@@ -19,5 +19,13 @@ Rails.application.routes.draw do
   # end
 
   post '/comments', to: 'comments#create'
+  # get '/comments', to: 'comments#index'
+  # get '/comments/:id', to: 'comments#show'
+  # delete 'comments/:id', to: 'comments#destroy'
+
+
+
+  post '/images', to: 'images#create'
+  get '/images', to: 'images#index'
 
 end

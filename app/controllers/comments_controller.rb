@@ -1,6 +1,18 @@
 class CommentsController < ApplicationController
-    before_action :fetch_type, only: [:create]
+    before_action :fetch_type, only: [:create,:index]
+
+    def index
+      @comment_type = fetch_type
+      @comments =  @comment_type.comments.all
+      render json:@comments, status: :ok
+    end 
   
+    def show
+      @comment_type = fetch_type
+      @comment = @comment_type.comments.find(params[:id])
+      render json:@comment, status: :ok
+    end
+
     def create
       @comment_type = fetch_type
       @comment = @comment_type.comments.build(comment_params)
@@ -9,6 +21,17 @@ class CommentsController < ApplicationController
         render json: @comment, status: :created
       else
         render json: @comment.errors, status: :unprocessable_entity
+      end
+    end
+
+    def destroy
+      @comment_type = fetch_type
+      @comment = @comment_type.comments.find(params[:id])
+
+      if @comment.destroy 
+        render json:{message: "Deleted successfully"}, status: :ok
+      else
+        render json:{error: "Unable to Delete"}, status: :ok
       end
     end
   
