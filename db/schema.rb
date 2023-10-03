@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_29_084329) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_29_125831) do
   create_table "buys", force: :cascade do |t|
     t.string "about"
     t.integer "price"
@@ -42,6 +42,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_084329) do
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
   end
 
+  create_table "loans", force: :cascade do |t|
+    t.string "name"
+    t.string "details"
+    t.integer "buy_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buy_id"], name: "index_loans_on_buy_id"
+  end
+
   create_table "rents", force: :cascade do |t|
     t.string "about"
     t.integer "price"
@@ -65,5 +74,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_29_084329) do
   end
 
   add_foreign_key "buys", "users"
+  add_foreign_key "loans", "buys"
   add_foreign_key "rents", "users"
 end

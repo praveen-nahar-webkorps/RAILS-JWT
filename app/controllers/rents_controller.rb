@@ -34,13 +34,15 @@ class RentsController < ApplicationController
 		end
     end 
 
-    # def all_apartments
-    #     @rents = rent.where(property_type: "Apartment")
-    # end
+    def all_apartments
+        @rents = Rent.where(property_type: "Apartment")
+        render json:@rents, status: :ok
+    end
 
-    # def all_independents
-    #     @rents = rent.where(property_type: "Independent")
-    # end
+    def all_independents
+        @rents = Rent.where(property_type: "Independent")
+        render json:@rents, status: :ok
+    end
 
 
     private

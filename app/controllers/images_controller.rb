@@ -1,5 +1,5 @@
 class ImagesController < ApplicationController
-    before_action :fetch_type, only: [:create,:index]
+    before_action :fetch_type, only: [:create,:index,:destroy]
 
     def index
         @image_type = fetch_type
@@ -15,6 +15,17 @@ class ImagesController < ApplicationController
             render json:{message: "Uploaded Successfully"}, status: :created
         else
             render json:{error: "Unable to Upload"}, status: :unprocessable_entity
+        end
+    end
+
+    def destroy
+        @image_type = fetch_type
+        @image = @image_type.images.find(params[:id])
+  
+        if @image.destroy 
+          render json:{message: "Deleted successfully"}, status: :ok
+        else
+          render json:{error: "Unable to Delete"}, status: :ok
         end
     end
 

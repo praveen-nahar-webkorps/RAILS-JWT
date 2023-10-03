@@ -1,4 +1,5 @@
 class BuysController < ApplicationController
+    before_action :authorize_request, except: :create
     before_action :find_buy, only: [:update,:show,:destroy]
   
     def index
@@ -34,13 +35,15 @@ class BuysController < ApplicationController
 		end
     end 
 
-    # def all_apartments
-    #     @buys = Buy.where(property_type: "Apartment")
-    # end
+    def all_apartments
+        @buys = Buy.where(property_type: "Apartment")
+        render json:@buys, status: :ok
+    end
 
-    # def all_independents
-    #     @buys = Buy.where(property_type: "Independent")
-    # end
+    def all_independents
+        @buys = Buy.where(property_type: "Independent")
+        render json:@buys, status: :ok
+    end
 
 
     private

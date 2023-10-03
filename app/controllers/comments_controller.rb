@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-    before_action :fetch_type, only: [:create,:index]
+    before_action :fetch_type, only: [:create,:index,:destroy]
 
     def index
       @comment_type = fetch_type
