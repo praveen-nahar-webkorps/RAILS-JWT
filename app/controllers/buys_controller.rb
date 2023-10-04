@@ -1,5 +1,5 @@
 class BuysController < ApplicationController
-    before_action :authorize_request, except: :create
+    before_action :authorize_request
     before_action :find_buy, only: [:update,:show,:destroy]
   
     def index

@@ -15,8 +15,6 @@ Rails.application.routes.draw do
   end
 
   
-  
-
   # resources :users, param: :_username do
   #   resources :buys do
   #     resources :comments, only: [:create]

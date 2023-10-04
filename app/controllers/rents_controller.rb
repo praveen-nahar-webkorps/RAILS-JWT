@@ -1,4 +1,5 @@
 class RentsController < ApplicationController
+    before_action :authorize_request
     before_action :find_rent, only: [:update,:show,:destroy]
   
     def index

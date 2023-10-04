@@ -1,4 +1,5 @@
 class ImagesController < ApplicationController
+    before_action :authorize_request
     before_action :fetch_type, only: [:create,:index,:destroy]
 
     def index

@@ -1,4 +1,6 @@
 class LoansController < ApplicationController
+    before_action :authorize_request
+    
     def index
         @loans = Buy.find_by(id: params[:buy_id]).loans.all
         render json:@loans, status: :ok
